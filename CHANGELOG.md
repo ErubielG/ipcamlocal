@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2
+- Build: `compileSdk 36`, Android Gradle Plugin 8.10.1, Gradle 8.11.1. `libvlc-all:3.7.6`
+  requires `minCompileSdk=36`; CodeAssist didn't enforce it, the first CI build did.
+  `targetSdk` stays at 35 (no runtime change).
+- CI: `actions/checkout@v5`, `actions/setup-java@v5`, runner pinned to `ubuntu-24.04`.
+
 ## 1.0.1
 - `CameraProfile` no longer depends on `android.text.TextUtils`, so its unit tests run on a
   plain JVM (they passed locally only against a full Android implementation). No behavior change.

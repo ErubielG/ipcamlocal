@@ -4,14 +4,14 @@ plugins {
 
 android {
     namespace 'com.ipcamlocal.app'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId 'com.ipcamlocal.app'
         minSdk 23
         targetSdk 35
-        versionCode 15
-        versionName '1.0.1'
+        versionCode 16
+        versionName '1.0.2'
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }

@@ -1,7 +1,7 @@
 # IPCamLocal
 
 [![Android CI](https://github.com/ErubielG/ipcamlocal/actions/workflows/android.yml/badge.svg)](https://github.com/ErubielG/ipcamlocal/actions/workflows/android.yml)
-![Version](https://img.shields.io/badge/version-1.0.1-blue)
+![Version](https://img.shields.io/badge/version-1.0.2-blue)
 ![Platform](https://img.shields.io/badge/platform-Android%206%2B-3DDC84)
 ![Language](https://img.shields.io/badge/language-Java-orange)
 [![License: GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue)](LICENSE)
@@ -79,7 +79,7 @@ CamerasActivity ── Hi3510CgiClient (LAN / Wi-Fi) · SQLite profiles · Keyst
 
 More in [docs/architecture.md](docs/architecture.md).
 
-**Stack:** Java · Android SDK (API 23–35) · LibVLC 3.7.6 · ONVIF / SOAP · WS-Security ·
+**Stack:** Java · Android SDK (min 23, target 35, compile 36) · LibVLC 3.7.6 · ONVIF / SOAP · WS-Security ·
 WS-Discovery · Hi3510 CGI · SQLite · Android Keystore · JUnit · GitHub Actions
 
 ## Tested on
