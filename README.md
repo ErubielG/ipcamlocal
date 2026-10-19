@@ -9,7 +9,13 @@
 **An Android client for Wi-Fi/Ethernet IP cameras: live RTSP video, PTZ control, Wi-Fi setup
 and automatic IP recovery — no accounts, no cloud, no paywall.**
 
-<!-- HERO IMAGE: docs/images/hero.png (main screen: video + PTZ pad) or hero.gif (PTZ moving) -->
+<p align="center">
+  <img src="docs/images/ptz-demo.gif" width="280"
+       alt="Recording of the app: tapping the PTZ arrows pans the live camera view across the room">
+  &nbsp;&nbsp;
+  <img src="docs/images/main.jpg" width="280"
+       alt="Main screen: 16:9 live video, PTZ pad, PiP, Photo and Disconnect buttons, background toggle">
+</p>
 
 ## Why I built it
 
@@ -38,10 +44,9 @@ The app's interface is in Spanish; the code, docs and this README are in English
 - Recognizes each camera by its ONVIF UUID, so it finds it again when the router gives it a
   new IP.
 
-<!-- SCREENSHOTS (table of 3–4):
-| Main screen | Fullscreen + zoom | Saved cameras | Wi-Fi setup |
-| docs/images/main.png | docs/images/fullscreen.png | docs/images/cameras.png | docs/images/wifi.png |
--->
+| Picture-in-Picture | Saved cameras | Wi-Fi setup (network names blurred) |
+|:---:|:---:|:---:|
+| <img src="docs/images/pip.jpg" width="200" alt="Live video in a floating PiP window over another app"> | <img src="docs/images/cameras.jpg" width="260" alt="Saved cameras screen with search and add buttons"> | <img src="docs/images/case-03-wifi-flow.jpg" width="340" alt="Camera network status, Wi-Fi networks scanned by the camera, and the configured confirmation"> |
 
 ## Engineering highlights
 

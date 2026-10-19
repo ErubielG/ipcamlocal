@@ -37,6 +37,12 @@ And because `onStop()` skips pausing the session while in PiP, the stream stayed
 | Off | No floating window; the session pauses |
 | On | Floating window + notification; same stream |
 
+<p align="center">
+  <img src="../images/case-04-background-off.jpg" width="520"
+       alt="Switch turned off in the app, then the home screen with no floating video window">
+  <br><sub>1.0: switch off → leaving the app shows no floating window.</sub>
+</p>
+
 ## Lesson
 
 A setting has to be enforced in every code path that can do what it controls, not just the

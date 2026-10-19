@@ -63,7 +63,12 @@ Stop fighting the library. The video's size is decided by a parent it cannot ove
 `AspectRatioFrameLayout` measures itself at 16:9 (capped to the available height), and all the
 Java code that set the video height was deleted, so the size is defined in **one** place.
 
-<!-- IMAGE: docs/images/case-01-after.png (16:9 video with all controls visible) -->
+<p align="center">
+  <img src="../images/case-01-before.jpg" width="240" alt="Before: video box filling the screen">
+  &nbsp;&nbsp;
+  <img src="../images/main.jpg" width="240" alt="After: 16:9 video with PTZ pad, buttons and toggle visible">
+  <br><sub>Before (0.11.2) and after (1.0): same screen, same phone.</sub>
+</p>
 
 ## Result
 
