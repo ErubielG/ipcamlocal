@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#101010"
+    android:paddingLeft="12dp"
+    android:paddingTop="8dp"
+    android:paddingRight="12dp"
+    android:paddingBottom="8dp">
+
+    <LinearLayout
+        android:id="@+id/header_panel"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="IPCam Local"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/connected_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="150dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:textColor="#DDDDDD"
+            android:textSize="14sp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp" />
+
+        <Button
+            android:id="@+id/settings_button"
+            android:layout_width="88dp"
+            android:layout_height="48dp"
+            android:text="CONFIG"
+            android:textAllCaps="true" />
+    </LinearLayout>
+
+    <!-- Only this container uses weight. The camera panel itself is MATCH_PARENT,
+         so its VLC surface never inherits a 0dp weighted height. -->
+    <FrameLayout
+        android:id="@+id/content_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/connection_panel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <EditText
+                android:id="@+id/rtsp_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="rtsp://192.168.1.x:554/ruta"
+                android:inputType="textUri"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#888888" />
+
+            <EditText
+                android:id="@+id/user_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Usuario"
+                android:inputType="text"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#888888" />
+
+            <EditText
+                android:id="@+id/password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#888888" />
+
+            <EditText
+                android:id="@+id/onvif_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Endpoint ONVIF/PTZ"
+                android:inputType="textUri"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#888888" />
+
+            <Button
+                android:id="@+id/connect_button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Conectar"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:id="@+id/status_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="6dp"
+                android:textColor="#CCCCCC"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Camera UI: based on the original working composition.
+             No ScrollView; video first; PTZ and actions are always in the same viewport. -->
+        <LinearLayout
+            android:id="@+id/camera_panel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="top|center_horizontal"
+            android:paddingTop="4dp"
+            android:paddingBottom="6dp"
+            android:visibility="gone">
+
+            <!-- VLCVideoLayout se fuerza a MATCH_PARENT en onAttachedToWindow().
+                 La altura del video la decide este contenedor 16:9.
+                 Tocarlo alterna la pantalla completa. -->
+            <com.ipcamlocal.app.AspectRatioFrameLayout
+                android:id="@+id/video_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#000000">
+
+                <org.videolan.libvlc.util.VLCVideoLayout
+                    android:id="@+id/video_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:focusable="false" />
+
+                <!-- Entrar / salir de pantalla completa. No se escala con el zoom
+                     (el zoom escala solo video_layout). -->
+                <ImageButton
+                    android:id="@+id/fullscreen_button"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="8dp"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:background="@drawable/bg_video_button"
+                    android:src="@drawable/ic_fullscreen"
+                    android:contentDescription="Pantalla completa" />
+            </com.ipcamlocal.app.AspectRatioFrameLayout>
+
+            <TextView
+                android:id="@+id/ptz_title"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="Control PTZ"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/ptz_panel"
+                android:layout_width="match_parent"
+                android:layout_height="144dp"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/up_button"
+                    android:layout_width="74dp"
+                    android:layout_height="48dp"
+                    android:text="▲"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/left_button"
+                        android:layout_width="74dp"
+                        android:layout_height="48dp"
+                        android:text="◀"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/stop_button"
+                        android:layout_width="74dp"
+                        android:layout_height="48dp"
+                        android:text="■"
+                        android:textSize="17sp" />
+
+                    <Button
+                        android:id="@+id/right_button"
+                        android:layout_width="74dp"
+                        android:layout_height="48dp"
+                        android:text="▶"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/down_button"
+                    android:layout_width="74dp"
+                    android:layout_height="48dp"
+                    android:text="▼"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/ptz_status"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:gravity="center"
+                android:text="PTZ detenido"
+                android:textColor="#AAAAAA"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:id="@+id/actions_panel"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/pip_button"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="PiP"
+                    android:textAllCaps="false" />
+
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="1dp" />
+
+                <Button
+                    android:id="@+id/snapshot_button"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Foto"
+                    android:textAllCaps="false" />
+
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="1dp" />
+
+                <Button
+                    android:id="@+id/disconnect_button"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Desconectar"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+
+            <Switch
+                android:id="@+id/background_switch"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:gravity="center_vertical"
+                android:text="Continuar en segundo plano"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
