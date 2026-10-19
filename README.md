@@ -84,12 +84,17 @@ WS-Discovery · Hi3510 CGI · SQLite · Android Keystore · JUnit · GitHub Acti
 
 ## Tested on
 
-- A real Wi-Fi PTZ camera (Hi3510 firmware family) and a Samsung Android phone.
+<img src="docs/images/camera.jpg" width="200" align="right"
+     alt="The test camera: white Wi-Fi PTZ camera with two antennas and infrared LEDs">
+
+- A real Wi-Fi PTZ camera (Hi3510 firmware family, pictured) and a Samsung Android phone.
 - What was verified in each release: [docs/validation.md](docs/validation.md).
 
 **Limits, honestly:** one camera model and one phone so far. The Hi3510 network setup is
 specific to that firmware family; the ONVIF path exists for other cameras but hasn't been
 validated with another brand yet.
+
+<br clear="right">
 
 ## Build
 

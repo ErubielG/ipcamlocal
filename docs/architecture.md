@@ -85,6 +85,12 @@ A `TextureView` lets the app read the current frame (`getBitmap()`) and be scale
 any other view, which is what the zoom needs. The trade-off: the photo has the resolution the
 video is drawn at on screen, not necessarily the camera's native resolution.
 
+<p align="center">
+  <img src="images/snapshot-sample.jpg" width="480"
+       alt="Snapshot saved by the app: a white room wall with an air conditioner, with the camera's timestamp overlay">
+  <br><sub>A snapshot saved by the app (1008 × 567, the size the video was drawn at).</sub>
+</p>
+
 **Credentials never live in plain text.** Camera passwords go to the Keystore; the Wi-Fi
 password used to provision the camera is sent once and never stored.
 
