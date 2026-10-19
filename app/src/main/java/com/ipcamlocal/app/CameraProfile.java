@@ -1,7 +1,6 @@
 package com.ipcamlocal.app;
 
-import android.text.TextUtils;
-
+/** Datos de una cámara guardada. Java puro (sin clases de Android) para poder probarlo en la JVM. */
 final class CameraProfile {
     public static final long SIN_ID = -1;
 
@@ -81,7 +80,7 @@ final class CameraProfile {
     public String construirUrlRtsp() {
         StringBuilder sb = new StringBuilder("rtsp://").append(host == null ? "" : host);
         if (puertoRtsp > 0) sb.append(":").append(puertoRtsp);
-        if (!TextUtils.isEmpty(rutaRtsp)) {
+        if (!vacio(rutaRtsp)) {
             sb.append(rutaRtsp.startsWith("/") ? rutaRtsp : "/" + rutaRtsp);
         }
         return sb.toString();
@@ -95,9 +94,9 @@ final class CameraProfile {
     public void aplicarNuevoHost(String nuevoHost, String xAddr, String uuid) {
         String anterior = host;
         host = nuevoHost;
-        if (!TextUtils.isEmpty(xAddr)) endpointDevice = xAddr;
-        if (!TextUtils.isEmpty(uuid)) deviceUuid = uuid;
-        if (!TextUtils.isEmpty(endpointOnvif) && !TextUtils.isEmpty(anterior)) {
+        if (!vacio(xAddr)) endpointDevice = xAddr;
+        if (!vacio(uuid)) deviceUuid = uuid;
+        if (!vacio(endpointOnvif) && !vacio(anterior)) {
             endpointOnvif = endpointOnvif
                     .replace("//" + anterior + ":", "//" + nuevoHost + ":")
                     .replace("//" + anterior + "/", "//" + nuevoHost + "/");
@@ -108,12 +107,17 @@ final class CameraProfile {
     }
 
     public String construirUrlRtspRemota() {
-        if (!remoteEnabled || !remoteVerified || TextUtils.isEmpty(remoteHost)) return "";
+        if (!remoteEnabled || !remoteVerified || vacio(remoteHost)) return "";
         int port = remotePort > 0 ? remotePort : puertoRtsp;
-        String path = TextUtils.isEmpty(remotePath) ? rutaRtsp : remotePath;
+        String path = vacio(remotePath) ? rutaRtsp : remotePath;
         StringBuilder sb = new StringBuilder("rtsp://").append(remoteHost);
         if (port > 0) sb.append(":").append(port);
-        if (!TextUtils.isEmpty(path)) sb.append(path.startsWith("/") ? path : "/" + path);
+        if (!vacio(path)) sb.append(path.startsWith("/") ? path : "/" + path);
         return sb.toString();
+    }
+
+    /** Equivalente a TextUtils.isEmpty() para String, sin depender de Android. */
+    private static boolean vacio(String s) {
+        return s == null || s.isEmpty();
     }
 }
