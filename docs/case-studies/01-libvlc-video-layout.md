@@ -28,8 +28,8 @@ video box was roughly **700 dp tall** and nothing else was visible.
 
 ## Evidence
 
-I downloaded the exact dependency (`org.videolan.android:libvlc-all:3.7.6`) from Maven Central,
-extracted `VLCVideoLayout.class` and disassembled it with `javap -c`:
+The exact dependency (`org.videolan.android:libvlc-all:3.7.6`) was downloaded from Maven
+Central, and `VLCVideoLayout.class` was extracted and disassembled with `javap -c`:
 
 ```
 protected void onAttachedToWindow();

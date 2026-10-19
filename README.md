@@ -113,9 +113,11 @@ that's how it was developed. Details in [docs/building.md](docs/building.md).
 
 ## Development notes
 
-Developed and built on an Android phone with CodeAssist. AI assistants (ChatGPT, Claude) were
-used as coding aids; the problem, the investigation on the real camera and the validation of
-each release are mine.
+Developed and built on an Android phone with CodeAssist. Much of the code was written with AI
+assistants (ChatGPT, Claude) acting as pair programmers. My part: defining what the app had to
+do, investigating the camera (its web panel, the Hi3510 CGI from Termux and the browser),
+testing every build on the real hardware, reporting what failed and deciding what to change
+next.
 
 ## License
 
