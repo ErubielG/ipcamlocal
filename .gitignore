@@ -1,0 +1,32 @@
+# Gradle / Android Studio build output
+.gradle/
+build/
+*/build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Local machine configuration (contains the path to your Android SDK)
+local.properties
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# CodeAssist project metadata (generated on import)
+.codeassist/
+.platform/
+
+# Signing keys: never commit them
+*.jks
+*.keystore
+keystore.properties
+
+# Generated packages (published through GitHub Releases instead)
+*.apk
+*.aab
+
+# OS clutter
+.DS_Store
+Thumbs.db
